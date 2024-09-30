@@ -193,14 +193,27 @@ function updateBet() {
     const newBet = parseInt(betInput.value);
     if (newBet > 0 && newBet <= coins) {
         betAmount = newBet;
+        gameMessage.textContent = ""; // Reset message if bet is valid
     } else {
-        gameMessage.textContent = "Invalid bet amount!";
+        gameMessage.textContent = "Invalid bet amount!"; // Show error for invalid bet
     }
 }
 
 // Event listeners
-hitButton.addEventListener('click', addCardToPlayer);
-standButton.addEventListener('click', dealerTurn);
+hitButton.addEventListener('click', () => {
+    if (coins > 0 && betAmount <= coins) { // Check if player can gamble
+        addCardToPlayer();
+    } else {
+        gameMessage.textContent = "You don't have enough coins to play!";
+    }
+});
+standButton.addEventListener('click', () => {
+    if (coins > 0 && betAmount <= coins) { // Check if player can gamble
+        dealerTurn();
+    } else {
+        gameMessage.textContent = "You don't have enough coins to play!";
+    }
+});
 resetButton.addEventListener('click', resetGame);
 betInput.addEventListener('change', updateBet);
 
@@ -210,14 +223,21 @@ updateCoins();
 resetGame();
 resetTimer(); // Reset de timer wanneer het spel begint
 
-// Reset the timer when the player closes the page with 0 coins
+// Reset de timer en munten als de speler 0 coins heeft bij het herladen
+if (coins <= 0) {
+    startTimer(); // Start de timer opnieuw
+} else {
+    timerElement.style.display = 'none'; // Verberg de timer als er munten zijn
+}
+
+// Reset de timer wanneer de pagina wordt gesloten als de coins 0 zijn
 window.onbeforeunload = function() {
     if (coins <= 0) {
         localStorage.setItem('timerReset', true); // Markeer dat de timer moet worden gereset
     }
 };
 
-// Reset the timer if the player comes back and the timer was marked to reset
+// Reset de timer als de speler terugkomt en de timer was gemarkeerd om te resetten
 if (localStorage.getItem('timerReset')) {
     localStorage.removeItem('timerReset'); // Verwijder de markering
     coins = 100; // Reset de munten
