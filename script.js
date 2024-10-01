@@ -11,6 +11,8 @@ const hitButton = document.getElementById('hit-button');
 const standButton = document.getElementById('stand-button');
 const resetButton = document.getElementById('reset-button');
 
+const cardSound = document.getElementById('card-sound'); // Referentie naar het geluidselement
+
 let playerScore = 0;
 let dealerScore = 0;
 let playerCards = [];
@@ -73,7 +75,11 @@ function renderCard(card, container) {
     cardElement.classList.add('card');
     cardElement.textContent = `${card.value}${card.suit}`;
     container.appendChild(cardElement);
-    // Add flip animation
+    
+    // Speel het geluid af bij het draaien van de kaart
+    cardSound.play(); 
+
+    // Voeg de flip animatie toe
     setTimeout(() => {
         cardElement.classList.add('flip');
     }, 100);
