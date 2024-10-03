@@ -6,9 +6,10 @@ const balanceDisplay = document.getElementById('balance');
 const resultDisplay = document.getElementById('result');
 
 let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 100;
+let isSpinning = false; // Om ervoor te zorgen dat er minimaal 1s tussen spins zit
 
 // Symbolen op de rollen
-const symbols = ['🍒', '🍋', '🔔', '🍇', '💎'];
+const symbols = ['🍒', '🍋', '🔔', '🍇', '💎', '❌', '❌']; // Voeg meer verliezen toe door '❌' toe te voegen
 
 // Functie voor het bijwerken van de balans
 function updateBalance() {
@@ -22,7 +23,8 @@ function updateBalance() {
 
 // Functie voor het draaien van de rollen
 function spinReels() {
-    if (balance <= 0) return;
+    if (balance <= 0 || isSpinning) return; // Stop als er wordt gesponnen of balans 0 is
+    isSpinning = true; // Voorkom meer spins voordat de huidige is voltooid
 
     // Kies willekeurige symbolen voor elke rol
     const reel1Symbol = symbols[Math.floor(Math.random() * symbols.length)];
@@ -36,17 +38,22 @@ function spinReels() {
 
     // Controleer of er een winnende combinatie is
     if (reel1Symbol === reel2Symbol && reel2Symbol === reel3Symbol) {
-        balance += 50; // Winstbedrag
-        resultDisplay.textContent = 'You Win 50 coins!';
+        balance += 30; // Verlaag het winstbedrag
+        resultDisplay.textContent = 'You Win 30 coins!';
     } else if (reel1Symbol === reel2Symbol || reel2Symbol === reel3Symbol || reel1Symbol === reel3Symbol) {
-        balance += 20; // Winstbedrag voor 2 overeenkomende symbolen
-        resultDisplay.textContent = 'You Win 20 coins!';
+        balance += 10; // Verlaag het winstbedrag voor 2 overeenkomende symbolen
+        resultDisplay.textContent = 'You Win 10 coins!';
     } else {
-        balance -= 10; // Verlies
-        resultDisplay.textContent = 'You Lose 10 coins!';
+        balance -= 15; // Verhoog het verliesbedrag
+        resultDisplay.textContent = 'You Lose 15 coins!';
     }
 
     updateBalance();
+
+    // Wacht 1 seconde voordat er weer gesponnen kan worden
+    setTimeout(() => {
+        isSpinning = false; // Na 1 seconde kan de speler weer spinnen
+    }, 1000);
 }
 
 // Event listener voor de spin-knop
