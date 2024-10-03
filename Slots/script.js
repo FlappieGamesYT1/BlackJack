@@ -4,12 +4,13 @@ const reel3 = document.getElementById('reel3');
 const spinButton = document.getElementById('spin-button');
 const balanceDisplay = document.getElementById('balance');
 const resultDisplay = document.getElementById('result');
+const betInput = document.getElementById('bet'); // Inzetveld
 
 let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 100;
-let isSpinning = false; // Om ervoor te zorgen dat er minimaal 1s tussen spins zit
+let isSpinning = false;
 
 // Symbolen op de rollen
-const symbols = ['🍒', '🍋', '🔔', '🍇', '💎', '❌', '❌']; // Voeg meer verliezen toe door '❌' toe te voegen
+const symbols = ['🍒', '🍋', '🔔', '🍇', '💎', '❌', '❌']; // Meer verlieskansen
 
 // Functie voor het bijwerken van de balans
 function updateBalance() {
@@ -24,7 +25,16 @@ function updateBalance() {
 // Functie voor het draaien van de rollen
 function spinReels() {
     if (balance <= 0 || isSpinning) return; // Stop als er wordt gesponnen of balans 0 is
-    isSpinning = true; // Voorkom meer spins voordat de huidige is voltooid
+    isSpinning = true;
+
+    let bet = parseInt(betInput.value); // Verkrijg de inzet van de speler
+
+    // Zorg ervoor dat de inzet geldig is
+    if (isNaN(bet) || bet <= 0 || bet > balance) {
+        alert("Ongeldige inzet! Zorg ervoor dat de inzet een positief getal is en je genoeg balans hebt.");
+        isSpinning = false;
+        return;
+    }
 
     // Kies willekeurige symbolen voor elke rol
     const reel1Symbol = symbols[Math.floor(Math.random() * symbols.length)];
@@ -38,21 +48,21 @@ function spinReels() {
 
     // Controleer of er een winnende combinatie is
     if (reel1Symbol === reel2Symbol && reel2Symbol === reel3Symbol) {
-        balance += 30; // Verlaag het winstbedrag
-        resultDisplay.textContent = 'You Win 30 coins!';
+        balance += bet * 2; // Verdubbel de inzet bij een volledige match
+        resultDisplay.textContent = `You Win ${bet * 2} coins!`;
     } else if (reel1Symbol === reel2Symbol || reel2Symbol === reel3Symbol || reel1Symbol === reel3Symbol) {
-        balance += 10; // Verlaag het winstbedrag voor 2 overeenkomende symbolen
-        resultDisplay.textContent = 'You Win 10 coins!';
+        balance += bet; // Enkel de inzet als winst bij 2 overeenkomende symbolen
+        resultDisplay.textContent = `You Win ${bet} coins!`;
     } else {
-        balance -= 15; // Verhoog het verliesbedrag
-        resultDisplay.textContent = 'You Lose 15 coins!';
+        balance -= bet; // Verlies het ingezette bedrag
+        resultDisplay.textContent = `You Lose ${bet} coins!`;
     }
 
     updateBalance();
 
     // Wacht 1 seconde voordat er weer gesponnen kan worden
     setTimeout(() => {
-        isSpinning = false; // Na 1 seconde kan de speler weer spinnen
+        isSpinning = false;
     }, 1000);
 }
 
