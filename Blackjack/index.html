@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blackjack Game</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #28a745, #155724);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: relative; /* Voeg position relative toe voor absolute positionering van de knop */
+        }
+        .controls {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px; /* Ruimte onder de controls */
+        }
+        #dealer-image {
+            width: 100px; /* Pas de breedte aan zoals gewenst */
+            height: auto; /* Houd de verhouding van de afbeelding */
+            margin-left: 20px; /* Ruimte tussen het menu en de afbeelding */
+        }
+        /* Stijl voor de terugknop */
+        .back-button {
+            position: absolute; /* Maak de knop absoluut gepositioneerd */
+            top: 20px; /* Afstand van de bovenkant van het scherm */
+            left: 20px; /* Afstand van de linkerkant van het scherm */
+            padding: 10px 20px; /* Opvulling van de knop */
+            font-size: 1em; /* Lettergrootte */
+            cursor: pointer; /* Handcursor */
+            background-color: #007bff; /* Achtergrondkleur */
+            color: white; /* Tekstkleur */
+            border: none; /* Geen rand */
+            border-radius: 5px; /* Afgeronde hoeken */
+            text-decoration: none; /* Geen onderstreping voor links */
+        }
+        .back-button:hover {
+            background-color: #0056b3; /* Donkerder bij hover */
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Terug knop -->
+        <a href="../index.html" class="back-button">Terug naar Home</a>
+        <h1>Blackjack</h1>
+        <div class="game-area">
+            <div class="player-area">
+                <h2>Player</h2>
+                <div id="player-cards" class="card-container"></div>
+                <p id="player-score">Score: 0</p>
+            </div>
+            <div class="dealer-area">
+                <h2>Dealer</h2>
+                <div id="dealer-cards" class="card-container"></div>
+                <p id="dealer-score">Score: 0</p>
+            </div>
+        </div>
+        <div class="controls">
+            <label for="bet-input">Bet amount:</label>
+            <input type="number" id="bet-input" min="1" max="100" value="10">
+            <button id="hit-button">Hit</button>
+            <button id="stand-button">Stand</button>
+            <button id="reset-button">Reset</button>
+            <img id="dealer-image" src="dealer.png" alt="Dealer Image">
+        </div>
+        <p id="game-message"></p>
+        <p id="coins">Coins: 100</p>
+        <p id="timer">Timer: 60 seconds</p>
+    </div>
+
+    <audio id="card-sound" src="card.mp3" preload="auto"></audio>
+    <script src="script.js"></script>
+</body>
+</html>

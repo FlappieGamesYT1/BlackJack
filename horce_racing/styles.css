@@ -1,0 +1,80 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #28a745, #155724);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    position: relative; /* Voeg position relative toe voor de back-button */
+}
+
+.container {
+    text-align: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.race-track {
+    position: relative;
+    width: 400px; /* Breedte van de racebaan */
+    height: 300px; /* Hoogte van de racebaan */
+    border: 1px solid #ccc;
+    margin: 20px auto; /* Centreer de racebaan */
+    overflow: hidden; /* Voorkom dat de paarden buiten de track komen */
+}
+
+.horse {
+    position: absolute;
+    width: 80px;
+    height: 40px;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    transition: left 0.2s; /* Voeg een transitie toe voor de beweging */
+}
+
+#horse1 {
+    background-color: #007bff; /* Blauw */
+    top: 10px; /* Plaats het eerste paard iets naar beneden */
+}
+
+#horse2 {
+    background-color: #28a745; /* Groen */
+    top: 100px; /* Plaats het tweede paard verder naar beneden */
+}
+
+#horse3 {
+    background-color: #dc3545; /* Rood */
+    top: 190px; /* Plaats het derde paard nog verder naar beneden */
+}
+
+.betting-area {
+    margin-bottom: 20px;
+}
+
+.result {
+    margin-top: 20px;
+}
+
+/* Styling voor de terug naar home knop */
+.back-button {
+    position: absolute;
+    top: 10px; /* Plaats de knop 10px van de bovenkant */
+    left: 10px; /* Plaats de knop 10px van de linkerzijde */
+    background-color: #007bff; /* Blauw */
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none; /* Verwijder onderlijn van de link */
+    font-size: 1em;
+}
+
+.back-button:hover {
+    background-color: #0056b3; /* Donkerder blauw bij hover */
+}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paardenrace Gokspel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Paardenrace Gokspel</h1>
+        <div class="betting-area">
+            <label for="bet-input">Plaats je inzet (1-100 munten): </label>
+            <input type="number" id="bet-input" min="1" max="100" value="10">
+            <label for="horse-input">Kies een paard (1, 2 of 3): </label>
+            <input type="number" id="horse-input" min="1" max="3" value="1">
+            <button id="bet-button">Plaats inzet</button>
+        </div>
+        <div class="race-track">
+            <div class="horse" id="horse1">Paard 1</div>
+            <div class="horse" id="horse2">Paard 2</div>
+            <div class="horse" id="horse3">Paard 3</div>
+        </div>
+        <div class="result">
+            <p id="result-message"></p>
+            <p id="balance">Huidige Balans: <span id="current-balance">100</span> Munten</p>
+        </div>
+        <a href="../index.html" class="back-button">Terug naar Home</a>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
