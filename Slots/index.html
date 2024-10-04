@@ -5,74 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Slot Game</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: linear-gradient(135deg, #28a745, #155724);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            position: relative; /* Voor absolute positionering van de knop */
-        }
-        .back-button {
-            position: absolute; /* Maak de knop absoluut gepositioneerd */
-            top: 20px; /* Afstand van de bovenkant van het scherm */
-            left: 20px; /* Afstand van de linkerkant van het scherm */
-            padding: 10px 20px; /* Opvulling van de knop */
-            font-size: 1em; /* Lettergrootte */
-            cursor: pointer; /* Handcursor */
-            background-color: #007bff; /* Achtergrondkleur */
-            color: white; /* Tekstkleur */
-            border: none; /* Geen rand */
-            border-radius: 5px; /* Afgeronde hoeken */
-            text-decoration: none; /* Geen onderstreping voor links */
-        }
-        .back-button:hover {
-            background-color: #0056b3; /* Donkerder bij hover */
-        }
-        .container {
-            text-align: center;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        .slot-machine {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-        .reel {
-            width: 100px;
-            height: 100px;
-            background-color: #333;
-            color: white;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2em;
-            margin: 0 5px;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-        .result {
-            margin-top: 20px;
-            font-size: 1.5em;
-            color: green;
-        }
-        .balance {
-            font-size: 1.2em;
-            margin-bottom: 10px;
-        }
-        .bet {
-            margin-bottom: 10px;
-        }
-    </style>
 </head>
 <body>
     <!-- Terug knop -->
@@ -81,10 +13,8 @@
         <h1>Slot Game</h1>
         <div class="balance">Huidige Balans: <span id="balance">100</span> Munten</div>
         <div class="bet">
-        <!-- Voeg een invoerveld toe voor de inzet -->
-        <label for="bet">Inzet: </label>
-        <input type="number" id="bet" min="1" value="10">
-
+            <label for="bet">Inzet: </label>
+            <input type="number" id="bet" min="1" value="10">
         </div>
         <div class="slot-machine">
             <div class="reel" id="reel1"></div>
@@ -94,6 +24,8 @@
         <button id="spin-button">Draai!</button>
         <div class="result" id="result"></div>
     </div>
+    
+    <!-- Link naar extern JavaScript bestand -->
     <script src="script.js"></script>
 </body>
 </html>
