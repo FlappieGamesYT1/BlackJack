@@ -20,7 +20,7 @@ body {
 .race-track {
     position: relative;
     width: 400px; /* Breedte van de racebaan */
-    height: 300px; /* Hoogte van de racebaan */
+    height: 400px; /* Hoogte van de racebaan vergroot om meer ruimte te geven aan 6 paarden */
     border: 1px solid #ccc;
     margin: 20px auto; /* Centreer de racebaan */
     overflow: hidden; /* Voorkom dat de paarden buiten de track komen */
@@ -45,12 +45,27 @@ body {
 
 #horse2 {
     background-color: #28a745; /* Groen */
-    top: 100px; /* Plaats het tweede paard verder naar beneden */
+    top: 80px; /* Plaats het tweede paard verder naar beneden */
 }
 
 #horse3 {
     background-color: #dc3545; /* Rood */
-    top: 190px; /* Plaats het derde paard nog verder naar beneden */
+    top: 150px; /* Plaats het derde paard nog verder naar beneden */
+}
+
+#horse4 {
+    background-color: #ffc107; /* Geel */
+    top: 220px; /* Plaats het vierde paard verder naar beneden */
+}
+
+#horse5 {
+    background-color: #17a2b8; /* Teal */
+    top: 290px; /* Plaats het vijfde paard verder naar beneden */
+}
+
+#horse6 {
+    background-color: #6f42c1; /* Paars */
+    top: 360px; /* Plaats het zesde paard verder naar beneden */
 }
 
 .betting-area {
