@@ -9,8 +9,8 @@ const betInput = document.getElementById('bet'); // Inzetveld
 let balance = localStorage.getItem('balance') ? parseInt(localStorage.getItem('balance')) : 100;
 let isSpinning = false;
 
-// Symbolen op de rollen (meer verlieskansen door meer '❌')
-const symbols = ['🍒', '🍋', '🔔', '🍇', '💎', '❌', '❌', '❌', '❌'];
+// Symbolen op de rollen (meer winnende symbolen, minder verlieskansen)
+const symbols = ['🍒', '🍋', '🔔', '🍇', '💎', '🍒', '🔔', '💎', '❌']; // Verlaag het aantal '❌'
 
 // Functie voor het bijwerken van de balans
 function updateBalance() {
@@ -46,10 +46,13 @@ function spinReels() {
     reel2.textContent = reel2Symbol;
     reel3.textContent = reel3Symbol;
 
-    // Controleer of er een winnende combinatie is (alleen bij drie dezelfde symbolen)
+    // Controleer of er een winnende combinatie is
     if (reel1Symbol === reel2Symbol && reel2Symbol === reel3Symbol) {
-        balance += bet * 2; // Verdubbel de inzet bij een volledige match
-        resultDisplay.textContent = `You Win ${bet * 2} coins!`;
+        balance += bet * 3; // Verhoog de winst bij drie dezelfde symbolen
+        resultDisplay.textContent = `You Win ${bet * 3} coins!`;
+    } else if (reel1Symbol === reel2Symbol || reel2Symbol === reel3Symbol || reel1Symbol === reel3Symbol) {
+        balance += bet; // Winst bij twee dezelfde symbolen
+        resultDisplay.textContent = `You Win ${bet} coins!`;
     } else {
         balance -= bet; // Verlies het ingezette bedrag
         resultDisplay.textContent = `You Lose ${bet} coins!`;
