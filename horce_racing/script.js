@@ -41,9 +41,9 @@ function startRace(selectedHorse, betAmount) {
     // Race simuleren
     const raceInterval = setInterval(() => {
         for (let i = 0; i < horsePositions.length; i++) {
-            // Beweeg het paard
+            // Beweeg het paard naar rechts
             horsePositions[i] += Math.random() * 10; // Beweeg elke keer een beetje
-            document.getElementById(`horse${i + 1}`).style.left = horsePositions[i] + 'px';
+            document.getElementById(`horse${i + 1}`).style.transform = `translateX(${horsePositions[i]}px)`; // Horizontaal bewegen
         }
 
         // Controleer op een winnaar
@@ -82,7 +82,7 @@ function resetGame() {
     // Reset de posities van de paarden voor de volgende race
     horsePositions = [0, 0, 0, 0, 0, 0];
     for (let i = 0; i < 6; i++) {
-        document.getElementById(`horse${i + 1}`).style.left = '0px';
+        document.getElementById(`horse${i + 1}`).style.transform = 'translateX(0px)'; // Reset de horizontale positie
     }
 }
 
