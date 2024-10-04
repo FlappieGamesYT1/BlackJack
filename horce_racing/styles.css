@@ -19,7 +19,7 @@ body {
 
 .race-track {
     position: relative;
-    width: 400px; /* Breedte van de racebaan */
+    width: 200px; /* Breedte van de racebaan */
     height: 300px; /* Hoogte van de racebaan */
     border: 1px solid #ccc;
     margin: 20px auto; /* Centreer de racebaan */
