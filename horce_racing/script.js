@@ -47,7 +47,7 @@ function startRace(selectedHorse, betAmount) {
         }
 
         // Controleer op een winnaar
-        const winner = horsePositions.findIndex(pos => pos >= 400); // 400px is de finishlijn
+        const winner = horsePositions.findIndex(pos => pos >= 320); // 320px is de finishlijn
         if (winner !== -1) {
             clearInterval(raceInterval); // Stop de race
             handleResult(winner, selectedHorse, betAmount);
