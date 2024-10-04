@@ -1,5 +1,5 @@
 let currentBalance = 100; // Startbalans
-let horsePositions = [0, 0, 0]; // Posities van de paarden
+let horsePositions = [0, 0, 0, 0, 0, 0]; // Posities van de zes paarden
 
 // Laad de balans uit localStorage bij het laden van de pagina
 window.onload = loadCoins;
@@ -11,8 +11,8 @@ document.getElementById("bet-button").onclick = function() {
     const horseNumber = parseInt(horseInput) - 1; // Paardnummer (0-indexed)
 
     // Validatie van invoer
-    if (isNaN(betAmount) || betAmount <= 0 || horseNumber < 0 || horseNumber > 2) {
-        alert("Kies een geldig paard (1-3) en een inzet (1-100).");
+    if (isNaN(betAmount) || betAmount <= 0 || horseNumber < 0 || horseNumber > 5) {
+        alert("Kies een geldig paard (1-6) en een inzet (1-100).");
         return;
     }
 
@@ -32,7 +32,7 @@ document.getElementById("bet-button").onclick = function() {
 
 function startRace(selectedHorse, betAmount) {
     // Reset posities van de paarden
-    horsePositions = [0, 0, 0];
+    horsePositions = [0, 0, 0, 0, 0, 0];
     document.getElementById("result-message").innerText = "";
     
     // Update huidige balans
@@ -47,7 +47,7 @@ function startRace(selectedHorse, betAmount) {
         }
 
         // Controleer op een winnaar
-        const winner = horsePositions.findIndex(pos => pos >= 400); // 800px is de finishlijn
+        const winner = horsePositions.findIndex(pos => pos >= 400); // 400px is de finishlijn
         if (winner !== -1) {
             clearInterval(raceInterval); // Stop de race
             handleResult(winner, selectedHorse, betAmount);
@@ -59,7 +59,7 @@ function handleResult(winner, selectedHorse, betAmount) {
     const resultMessage = document.getElementById("result-message");
     if (winner === selectedHorse) {
         resultMessage.innerText = `Paard ${winner + 1} heeft gewonnen! Je hebt gewonnen!`;
-        currentBalance += betAmount; // Win het ingezette bedrag
+        currentBalance += betAmount * 6; // Win 6x het ingezette bedrag
     } else {
         resultMessage.innerText = `Paard ${winner + 1} heeft gewonnen! Je hebt verloren!`;
         currentBalance -= betAmount; // Verlies het ingezette bedrag
@@ -80,10 +80,10 @@ function resetGame() {
     document.getElementById("bet-button").disabled = false;
 
     // Reset de posities van de paarden voor de volgende race
-    horsePositions = [0, 0, 0];
-    document.getElementById("horse1").style.left = '0px';
-    document.getElementById("horse2").style.left = '0px';
-    document.getElementById("horse3").style.left = '0px';
+    horsePositions = [0, 0, 0, 0, 0, 0];
+    for (let i = 0; i < 6; i++) {
+        document.getElementById(`horse${i + 1}`).style.left = '0px';
+    }
 }
 
 // Laad munten uit localStorage
